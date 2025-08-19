@@ -1,16 +1,19 @@
 name: Deploy Storybook to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    types: [labeled]
+    types:
+      - closed
   workflow_dispatch:
 
 jobs:
   deploy-storybook:
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'storybook'))
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.merged == true &&
+       github.event.pull_request.base.ref == 'main' &&
+       contains(github.event.pull_request.labels.*.name, 'storybook'))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
