@@ -1,5 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+import storybook from 'eslint-plugin-storybook';
 
 import js from '@eslint/js';
 import globals from 'globals';
@@ -10,20 +10,24 @@ import { globalIgnores } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [js.configs.recommended, tseslint.configs.recommended, reactHooks.configs['recommended-latest'], reactRefresh.configs.vite, prettier],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+export default tseslint.config(
+  [
+    globalIgnores(['dist']),
+    {
+      files: ['**/*.{ts,tsx}'],
+      extends: [js.configs.recommended, tseslint.configs.recommended, reactHooks.configs['recommended-latest'], reactRefresh.configs.vite, prettier],
+      languageOptions: {
+        ecmaVersion: 2020,
+        globals: globals.browser,
+      },
+      plugins: {
+        prettier: eslintPluginPrettier,
+      },
+      rules: {
+        'prettier/prettier': 'error',
+        '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports', fixStyle: 'separate-type-imports' }],
+      },
     },
-    plugins: {
-      prettier: eslintPluginPrettier,
-    },
-    rules: {
-      'prettier/prettier': 'error',
-    },
-  },
-], storybook.configs["flat/recommended"]);
+  ],
+  storybook.configs['flat/recommended'],
+);
