@@ -13,11 +13,13 @@ export const Toast = ({ message, isVisible, position = 'center', duration = 2000
   useEffect(() => {
     if (isVisible) {
       setShow(true);
+      const timer = setTimeout(() => setShow(false), duration);
+      return () => clearTimeout(timer);
     } else {
       const timer = setTimeout(() => setShow(false), 300);
       return () => clearTimeout(timer);
     }
-  }, [isVisible]);
+  }, [isVisible, duration]);
 
   const positionClasses = {
     top: 'top-20',
