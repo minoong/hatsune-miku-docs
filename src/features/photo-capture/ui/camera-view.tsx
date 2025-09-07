@@ -32,7 +32,32 @@ export const CameraView = ({ mediaCapture, onPhotoCapture, onClose }: CameraView
 
       {/* 카메라 뷰 */}
       <div className="flex-1 relative overflow-hidden">
-        <video ref={videoRef} className="w-full h-full object-cover" autoPlay playsInline muted />
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          autoPlay
+          playsInline
+          muted
+          controls={false}
+          webkit-playsinline=""
+          onCanPlay={(e) => {
+            // iOS Safari를 위한 재생 보장
+            const video = e.currentTarget;
+            if (video.paused) {
+              video.play().catch((err) => {
+                console.warn('비디오 재생 실패:', err);
+                // 추가 사용자 인터랙션 대기
+              });
+            }
+          }}
+          onLoadedData={(e) => {
+            // 데이터 로드 완료 시에도 재생 시도
+            const video = e.currentTarget;
+            if (video.paused) {
+              video.play().catch(console.warn);
+            }
+          }}
+        />
 
         {/* 가이드라인 */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
