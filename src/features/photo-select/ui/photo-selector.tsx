@@ -11,14 +11,36 @@ export const PhotoSelector = ({ onPhotoSelect }: PhotoSelectorProps) => {
   const [showCamera, setShowCamera] = useState(false);
   const mediaCapture = useMediaCapture();
 
-  const handleTakePhoto = async () => {
-    try {
-      await mediaCapture.startCamera();
-      setShowCamera(true);
-    } catch (error) {
-      console.error('카메라 시작 실패:', error);
-      alert('카메라에 접근할 수 없습니다. 권한을 확인해주세요.');
+  const handleTakePhoto = () => {
+    console.log('카메라 촬영 버튼 클릭됨');
+
+    // 직접 파일 input 생성 (동기적으로 사용자 제스처 내에서)
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.multiple = false;
+
+    // iOS에서 카메라 직접 접근 시도
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      input.capture = 'environment';
     }
+
+    input.onchange = (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const result = e.target?.result as string;
+          if (result) {
+            onPhotoSelect(result);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    // 사용자 제스처 내에서 바로 클릭
+    input.click();
   };
 
   const handleSelectFromGallery = async () => {
