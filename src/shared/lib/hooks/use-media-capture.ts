@@ -3,8 +3,8 @@ import { useCallback, useRef, useState } from 'react';
 export interface MediaCaptureHook {
   isSupported: boolean;
   isCameraActive: boolean;
-  videoRef: React.RefObject<HTMLVideoElement>;
-  canvasRef: React.RefObject<HTMLCanvasElement>;
+  videoRef: React.RefObject<HTMLVideoElement | null>;
+  canvasRef: React.RefObject<HTMLCanvasElement | null>;
   startCamera: () => Promise<void>;
   stopCamera: () => void;
   capturePhoto: () => string | null;

@@ -26,7 +26,7 @@ export const Slider = ({ label, showValue = true, value, min = -100, max = 100, 
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
           {...props}
         />
-        <style jsx>{`
+        <style>{`
           .slider::-webkit-slider-thumb {
             appearance: none;
             height: 20px;
