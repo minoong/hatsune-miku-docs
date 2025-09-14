@@ -31,6 +31,8 @@ This is a React + TypeScript component library/documentation project using:
 
 ### Key Technologies
 - React 19 with TypeScript
+- React Router DOM for routing
+- Framer Motion for animations
 - Tailwind CSS v4 with Vite plugin
 - Storybook with accessibility addon
 - Vitest + Playwright for browser testing
@@ -50,12 +52,19 @@ src/features/{domain}/
   └── *.stories.tsx   # Storybook stories
 ```
 
-Example: `src/features/carousel/` contains infinite carousel component with custom hooks and TypeScript types.
+Examples: 
+- `src/features/carousel/` - Infinite carousel component with custom hooks and TypeScript types
+- `src/features/photo-capture/` - Camera view and photo capture functionality
+- `src/features/film-recipe/` - Film simulation recipe cards and bottom sheets
+- `src/features/photo-edit/` - Photo editing controls and bottom sheets
+- `src/features/photo-select/` - Photo selection components
+- `src/features/tabs/` - Tab navigation components
 
 ### Styling Approach
 - Uses Tailwind CSS v4 with utility classes
 - Gradient backgrounds and modern UI patterns
 - Responsive design with proper touch/mouse event handling
+- Framer Motion for smooth animations and transitions
 - Custom CSS in component-specific files when needed
 
 ### Storybook Integration
