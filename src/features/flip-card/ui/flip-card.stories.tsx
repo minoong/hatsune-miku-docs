@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <FlipCard>
-      <FlipCard.Image src="/images/miku-main.png" alt="Miku" />
+      <FlipCard.Image src="./images/miku-main.png" alt="Miku" />
       <FlipCard.Content className="bg-slate-800">
         <div className="bg-gradient-to-br from-pink-500 to-yellow-400 p-5 rounded-lg translate-z-24">
           <FlipCard.Title>✨ 미쿠의 하루</FlipCard.Title>
@@ -41,7 +41,7 @@ export const Grid: Story = {
       <FlipCard.Grid>
         {Array.from({ length: 6 }, (_, i) => (
           <FlipCard key={i}>
-            <FlipCard.Image src="/images/miku-main.png" alt="Miku" />
+            <FlipCard.Image src="./images/miku-main.png" alt="Miku" />
             <FlipCard.Content className="bg-slate-800">
               <div className="bg-gradient-to-br from-pink-500 to-yellow-400 p-5 rounded-lg">
                 <FlipCard.Title>🎵 미쿠 카드 {i + 1}</FlipCard.Title>
@@ -58,7 +58,7 @@ export const Grid: Story = {
 export const CustomContent: Story = {
   render: () => (
     <FlipCard>
-      <FlipCard.Image src="/images/miku-main.png" alt="Miku" />
+      <FlipCard.Image src="./images/miku-main.png" alt="Miku" />
       <FlipCard.Content className="bg-gradient-to-br from-blue-500 to-purple-600">
         <div className="p-5">
           <FlipCard.Title className="text-2xl font-bold mb-4">🎨 나만의 스타일</FlipCard.Title>
@@ -73,7 +73,7 @@ export const ObjectFitVariations: Story = {
   render: () => (
     <div className="flex gap-8 flex-wrap justify-center">
       <FlipCard>
-        <FlipCard.Image src="/images/miku-main.png" alt="Miku" objectFit="cover" />
+        <FlipCard.Image src="./images/miku-main.png" alt="Miku" objectFit="cover" />
         <FlipCard.Content className="bg-slate-800">
           <div className="bg-gradient-to-br from-green-500 to-blue-500 p-5 rounded-lg">
             <FlipCard.Title>📷 꽉 채우기 (Cover)</FlipCard.Title>
@@ -83,7 +83,7 @@ export const ObjectFitVariations: Story = {
       </FlipCard>
 
       <FlipCard>
-        <FlipCard.Image src="/images/miku-main.png" alt="Miku" objectFit="contain" />
+        <FlipCard.Image src="./images/miku-main.png" alt="Miku" objectFit="contain" />
         <FlipCard.Content className="bg-slate-800">
           <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-5 rounded-lg">
             <FlipCard.Title>🖼️ 전체 보기 (Contain)</FlipCard.Title>
