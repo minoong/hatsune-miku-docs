@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { useMediaCapture } from '~/shared/lib/hooks/use-media-capture';
 import { CameraView } from '~/features/photo-capture/ui/camera-view';
 import { Button } from '~/shared/ui/button/button';

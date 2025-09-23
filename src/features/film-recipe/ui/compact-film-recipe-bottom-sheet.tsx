@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+
 import { FILM_RECIPES, type FilmRecipe } from '~/entities/film-recipe/model/types';
-import { CompactFilmRecipeCard } from './compact-film-recipe-card';
 import { Button } from '~/shared/ui/button/button';
+
+import { CompactFilmRecipeCard } from './compact-film-recipe-card';
 
 interface CompactFilmRecipeBottomSheetProps {
   isOpen: boolean;

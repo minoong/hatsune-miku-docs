@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import { FILM_RECIPES, type FilmRecipe } from '~/entities/film-recipe/model/types';
-import { FilmRecipeCard } from './film-recipe-card';
 import { Button } from '~/shared/ui/button/button';
+
+import { FilmRecipeCard } from './film-recipe-card';
 
 interface FilmRecipeSelectorProps {
   selectedRecipe?: FilmRecipe | null;

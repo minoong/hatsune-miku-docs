@@ -1,4 +1,4 @@
-import type { PhotoEditSettings } from '../model/types';
+import type { PhotoEditSettings } from '~/features/photo-edit/model/types';
 
 export const generateCSSFilter = (settings: PhotoEditSettings): string => {
   const filters = [];

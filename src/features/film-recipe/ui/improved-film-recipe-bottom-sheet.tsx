@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
+
 import { FILM_RECIPES, type FilmRecipe } from '~/entities/film-recipe/model/types';
-import { CompactFilmRecipeCard } from './compact-film-recipe-card';
 import { ImprovedBottomSheet } from '~/shared/ui/bottom-sheet/improved-bottom-sheet';
 import { Button } from '~/shared/ui/button/button';
+
+import { CompactFilmRecipeCard } from './compact-film-recipe-card';
 
 interface ImprovedFilmRecipeBottomSheetProps {
   isOpen: boolean;

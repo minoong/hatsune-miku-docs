@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Tab } from './ui';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { Tab } from './ui';
 
 const meta: Meta<typeof Tab.Root> = {
   title: 'Features/Tabs',

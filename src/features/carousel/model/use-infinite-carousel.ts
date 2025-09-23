@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import { type CarouselItem, type UseInfiniteCarouselOptions } from '~/features/carousel/model/type';
 
 export const useInfiniteCarousel = (originalItems: CarouselItem[], options: UseInfiniteCarouselOptions = {}) => {

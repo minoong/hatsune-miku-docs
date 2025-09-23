@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { FlipCard } from './index';
 
 const meta: Meta<typeof FlipCard> = {
