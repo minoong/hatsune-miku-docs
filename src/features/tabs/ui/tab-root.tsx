@@ -1,4 +1,5 @@
 import { useCallback, useId, useState } from 'react';
+
 import { TabProvider } from '~/features/tabs/lib/context';
 
 interface TabRootProps {

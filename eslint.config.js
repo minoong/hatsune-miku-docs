@@ -9,10 +9,11 @@ import tseslint from 'typescript-eslint';
 import { globalIgnores } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
+import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
   [
-    globalIgnores(['dist']),
+    globalIgnores(['vite.config.ts', 'dist', 'storybook-static']),
     {
       files: ['**/*.{ts,tsx}'],
       extends: [js.configs.recommended, tseslint.configs.recommended, reactHooks.configs['recommended-latest'], reactRefresh.configs.vite, prettier],
@@ -22,10 +23,38 @@ export default tseslint.config(
       },
       plugins: {
         prettier: eslintPluginPrettier,
+        import: importPlugin,
+      },
+      settings: {
+        'import/resolver': {
+          typescript: {
+            alwaysTryTypes: true,
+            project: './tsconfig.app.json',
+          },
+        },
       },
       rules: {
         'prettier/prettier': 'error',
         '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports', fixStyle: 'separate-type-imports' }],
+        'import/order': [
+          'error',
+          {
+            groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+            'newlines-between': 'always',
+            pathGroups: [
+              {
+                pattern: '~/**',
+                group: 'internal',
+                position: 'before',
+              },
+            ],
+            pathGroupsExcludedImportTypes: ['builtin'],
+          },
+        ],
+        'import/no-unresolved': ['error', { ignore: ['^~/', '^/.*'] }],
+        'import/no-duplicates': 'error',
+        'import/first': 'error',
+        'import/newline-after-import': 'error',
       },
     },
   ],

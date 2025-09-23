@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { EDIT_CONTROLS, type PhotoEditSettings } from '../model/types';
+
 import { Slider } from '~/shared/ui/slider/slider';
 import { Button } from '~/shared/ui/button/button';
+import { EDIT_CONTROLS, type PhotoEditSettings } from '~/features/photo-edit/model/types';
 
 interface CompactEditControlsBottomSheetProps {
   isOpen: boolean;

@@ -1,8 +1,10 @@
 import { useState } from 'react';
+
 import { FILM_RECIPES, type FilmRecipe } from '~/entities/film-recipe/model/types';
-import { FilmRecipeCardHorizontal } from './film-recipe-card-horizontal';
 import { BottomSheet } from '~/shared/ui/bottom-sheet/bottom-sheet';
 import { Button } from '~/shared/ui/button/button';
+
+import { FilmRecipeCardHorizontal } from './film-recipe-card-horizontal';
 
 interface FilmRecipeBottomSheetProps {
   isOpen: boolean;

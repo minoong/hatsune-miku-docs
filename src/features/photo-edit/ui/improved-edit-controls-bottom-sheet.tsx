@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { EDIT_CONTROLS, type PhotoEditSettings } from '../model/types';
+
 import { Slider } from '~/shared/ui/slider/slider';
 import { ImprovedBottomSheet } from '~/shared/ui/bottom-sheet/improved-bottom-sheet';
 import { Button } from '~/shared/ui/button/button';
+import { EDIT_CONTROLS, type PhotoEditSettings } from '~/features/photo-edit/model/types';
 
 interface ImprovedEditControlsBottomSheetProps {
   isOpen: boolean;
