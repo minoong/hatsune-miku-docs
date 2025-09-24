@@ -51,9 +51,9 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
 
   if (hasError) {
     return (
-      <div className={`${videoHeight} bg-gray-100 rounded-lg flex items-center justify-center`}>
+      <div className={`${videoHeight} flex items-center justify-center rounded-lg bg-gray-100`}>
         <div className="text-center text-gray-500">
-          <svg className="w-12 h-12 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="mx-auto mb-2 h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -68,12 +68,12 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
   }
 
   return (
-    <div className={`relative ${videoHeight} bg-gray-100 rounded-lg overflow-hidden group`}>
+    <div className={`relative ${videoHeight} group overflow-hidden rounded-lg bg-gray-100`}>
       {/* Loading placeholder */}
       {isLoading && (
-        <motion.div className="absolute inset-0 bg-gray-200 flex items-center justify-center z-10" initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-200" initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.div
-            className="w-8 h-8 border-4 border-gray-300 border-t-blue-500 rounded-full"
+            className="h-8 w-8 rounded-full border-4 border-gray-300 border-t-blue-500"
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
           />
@@ -83,7 +83,7 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
       {/* Video element */}
       <video
         ref={videoRef}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+        className={`h-full w-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
         preload="metadata"
         muted
         playsInline
@@ -98,7 +98,7 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
 
       {/* Play/Pause button */}
       <motion.button
-        className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        className="bg-opacity-20 absolute inset-0 flex items-center justify-center bg-black opacity-0 transition-opacity duration-200 group-hover:opacity-100"
         onClick={(e) => {
           e.stopPropagation();
           handlePlayToggle();
@@ -107,9 +107,9 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
         whileTap={{ scale: 0.95 }}
         aria-label={isPlaying ? 'Pause video' : 'Play video'}
       >
-        <div className="w-16 h-16 bg-black bg-opacity-50 rounded-full flex items-center justify-center backdrop-blur-sm">
+        <div className="bg-opacity-50 flex h-16 w-16 items-center justify-center rounded-full bg-black backdrop-blur-sm">
           {isPlaying ? (
-            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zM11 8a1 1 0 012 0v4a1 1 0 11-2 0V8z"
@@ -117,7 +117,7 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
               />
             </svg>
           ) : (
-            <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="ml-1 h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -129,18 +129,18 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
       </motion.button>
 
       {/* Video metadata overlay */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/50 to-transparent p-3">
+      <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black via-black/50 to-transparent p-3">
         {/* Duration and current time */}
-        <div className="flex items-center justify-between text-white text-xs mb-2">
+        <div className="mb-2 flex items-center justify-between text-xs text-white">
           <span>{formatDuration(currentTime)}</span>
           {media.metadata?.duration && <span>{formatDuration(media.metadata.duration)}</span>}
         </div>
 
         {/* Progress bar */}
         {media.metadata?.duration && (
-          <div className="w-full h-1 bg-white bg-opacity-30 rounded-full cursor-pointer" onClick={handleSeek}>
+          <div className="bg-opacity-30 h-1 w-full cursor-pointer rounded-full bg-white" onClick={handleSeek}>
             <motion.div
-              className="h-full bg-white rounded-full"
+              className="h-full rounded-full bg-white"
               style={{
                 width: `${(currentTime / media.metadata.duration) * 100}%`,
               }}
@@ -151,7 +151,7 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
 
         {/* Video dimensions */}
         {media.metadata && (
-          <div className="flex items-center justify-between text-white text-xs mt-2">
+          <div className="mt-2 flex items-center justify-between text-xs text-white">
             <span>
               {media.metadata.width}×{media.metadata.height}
             </span>
@@ -162,13 +162,13 @@ export const VideoCard = ({ media, variant = 'compact' }: VideoCardProps) => {
 
       {/* Video type indicator */}
       <div className="absolute top-2 right-2">
-        <div className="bg-gradient-to-t from-black/60 to-black/20 text-white text-xs px-2 py-1 rounded backdrop-blur-md">🎬 Video</div>
+        <div className="rounded bg-gradient-to-t from-black/60 to-black/20 px-2 py-1 text-xs text-white backdrop-blur-md">🎬 Video</div>
       </div>
 
       {/* Orientation indicator for detailed view */}
       {isDetailed && media.metadata && media.metadata.orientation !== 'square' && (
         <div className="absolute top-2 left-2">
-          <div className="bg-gradient-to-t from-black/60 to-black/20 text-white text-xs px-2 py-1 rounded backdrop-blur-md">
+          <div className="rounded bg-gradient-to-t from-black/60 to-black/20 px-2 py-1 text-xs text-white backdrop-blur-md">
             {media.metadata.orientation === 'landscape' ? '📐' : '📏'}
           </div>
         </div>

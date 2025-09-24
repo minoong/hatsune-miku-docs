@@ -54,16 +54,16 @@ export const InfiniteCarousel = (props: InfiniteCarouselProps) => {
   const isHorizontal = direction === 'horizontal';
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
-      <div className="text-center mb-6">
-        <h2 className="text-3xl font-bold mb-4">무한 터치 캐러셀 (TypeScript)</h2>
+    <div className="mx-auto w-full max-w-4xl p-6">
+      <div className="mb-6 text-center">
+        <h2 className="mb-4 text-3xl font-bold">무한 터치 캐러셀 (TypeScript)</h2>
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white" key={key}>
+      <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl" key={key}>
         {/* 캐러셀 컨테이너 */}
         <div
           ref={carousel.containerRef}
-          className={`relative cursor-grab active:cursor-grabbing select-none ${isHorizontal ? 'w-full h-96' : 'w-full h-96'}`}
+          className={`relative cursor-grab select-none active:cursor-grabbing ${isHorizontal ? 'h-96 w-full' : 'h-96 w-full'}`}
           onMouseDown={handleMouseDown}
           onMouseMove={carousel.isDragging ? handleMouseMove : undefined}
           onMouseUp={carousel.isDragging ? carousel.handleEnd : undefined}
@@ -82,19 +82,19 @@ export const InfiniteCarousel = (props: InfiniteCarouselProps) => {
             {carousel.items.map((item: CarouselItem, index: number) => (
               <div
                 key={`${item.id}-${index}`}
-                className={`flex-shrink-0 ${isHorizontal ? 'w-full' : 'h-full w-full'} ${item.color} flex flex-col items-center justify-center text-white relative overflow-hidden`}
+                className={`flex-shrink-0 ${isHorizontal ? 'w-full' : 'h-full w-full'} ${item.color} relative flex flex-col items-center justify-center overflow-hidden text-white`}
               >
                 {/* 배경 패턴 */}
                 <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-white transform -translate-x-16 -translate-y-16"></div>
-                  <div className="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-white transform translate-x-24 translate-y-24"></div>
+                  <div className="absolute top-0 left-0 h-32 w-32 -translate-x-16 -translate-y-16 transform rounded-full bg-white"></div>
+                  <div className="absolute right-0 bottom-0 h-48 w-48 translate-x-24 translate-y-24 transform rounded-full bg-white"></div>
                 </div>
 
                 {/* 콘텐츠 */}
-                <div className="text-8xl mb-4 animate-pulse">{item.image}</div>
-                <h3 className="text-2xl font-bold mb-2 text-center z-10">{item.title}</h3>
-                <p className="text-lg opacity-90 text-center z-10">슬라이드 #{item.id}</p>
-                <p className="text-sm opacity-75 mt-2 z-10">{isHorizontal ? '좌우로 드래그' : '상하로 드래그'}</p>
+                <div className="mb-4 animate-pulse text-8xl">{item.image}</div>
+                <h3 className="z-10 mb-2 text-center text-2xl font-bold">{item.title}</h3>
+                <p className="z-10 text-center text-lg opacity-90">슬라이드 #{item.id}</p>
+                <p className="z-10 mt-2 text-sm opacity-75">{isHorizontal ? '좌우로 드래그' : '상하로 드래그'}</p>
               </div>
             ))}
           </div>
@@ -104,7 +104,7 @@ export const InfiniteCarousel = (props: InfiniteCarouselProps) => {
             <>
               <button
                 onClick={carousel.prev}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
+                className="absolute top-1/2 left-4 -translate-y-1/2 transform rounded-full bg-white/20 p-3 text-white backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white/30"
                 disabled={carousel.isTransitioning}
               >
                 👈
@@ -112,7 +112,7 @@ export const InfiniteCarousel = (props: InfiniteCarouselProps) => {
 
               <button
                 onClick={carousel.next}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
+                className="absolute top-1/2 right-4 -translate-y-1/2 transform rounded-full bg-white/20 p-3 text-white backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white/30"
                 disabled={carousel.isTransitioning}
               >
                 👉
@@ -122,7 +122,7 @@ export const InfiniteCarousel = (props: InfiniteCarouselProps) => {
             <>
               <button
                 onClick={carousel.prev}
-                className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
+                className="absolute top-4 left-1/2 -translate-x-1/2 transform rounded-full bg-white/20 p-3 text-white backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white/30"
                 disabled={carousel.isTransitioning}
               >
                 👆
@@ -130,7 +130,7 @@ export const InfiniteCarousel = (props: InfiniteCarouselProps) => {
 
               <button
                 onClick={carousel.next}
-                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 transform rounded-full bg-white/20 p-3 text-white backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white/30"
                 disabled={carousel.isTransitioning}
               >
                 👇
@@ -141,13 +141,13 @@ export const InfiniteCarousel = (props: InfiniteCarouselProps) => {
 
         {/* 인디케이터 */}
         {isHorizontal && (
-          <div className={`p-4 bg-gray-50 ${isHorizontal ? 'flex justify-center space-x-2' : 'flex flex-col items-center space-y-2'}`}>
+          <div className={`bg-gray-50 p-4 ${isHorizontal ? 'flex justify-center space-x-2' : 'flex flex-col items-center space-y-2'}`}>
             {carousel.originalItems.map((_, index: number) => (
               <button
                 key={index}
                 onClick={() => carousel.goToSlide(index)}
-                className={`${isHorizontal ? 'w-3 h-3' : 'w-3 h-3'} rounded-full transition-all duration-300 ${
-                  carousel.currentRealIndex === index ? 'bg-blue-500 scale-125' : 'bg-gray-300 hover:bg-gray-400'
+                className={`${isHorizontal ? 'h-3 w-3' : 'h-3 w-3'} rounded-full transition-all duration-300 ${
+                  carousel.currentRealIndex === index ? 'scale-125 bg-blue-500' : 'bg-gray-300 hover:bg-gray-400'
                 }`}
                 disabled={carousel.isTransitioning}
               />

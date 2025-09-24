@@ -51,14 +51,7 @@ export const FileDropzone = ({
 
   return (
     <motion.div
-      className={`
-        relative rounded-xs border-2 border-dashed p-4 text-center transition-all duration-200
-        w-48 h-72 mx-auto overflow-hidden
-        bg-contain bg-center bg-no-repeat
-        ${stateStyles[state]}
-        ${!disabled ? 'cursor-pointer hover:border-blue-400' : ''}
-        ${className}
-      `}
+      className={`relative mx-auto h-72 w-48 overflow-hidden rounded-xs border-2 border-dashed bg-contain bg-center bg-no-repeat p-4 text-center transition-all duration-200 ${stateStyles[state]} ${!disabled ? 'cursor-pointer hover:border-blue-400' : ''} ${className} `}
       style={{
         backgroundImage: `url('/images/miku-main.png')`,
       }}
@@ -69,7 +62,7 @@ export const FileDropzone = ({
       {/* Hidden file input */}
       {getInputProps && <input {...getInputProps()} />}
       <motion.div
-        className="flex flex-col items-center justify-end space-y-2 relative z-10 h-full"
+        className="relative z-10 flex h-full flex-col items-center justify-end space-y-2"
         variants={iconVariants}
         animate={state}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -80,7 +73,7 @@ export const FileDropzone = ({
               {state === 'reject' && '❌'}
             </motion.div>
 
-            <div className="space-y-1 bg-white p-2 rounded">
+            <div className="space-y-1 rounded bg-white p-2">
               <motion.p className="text-xs font-medium text-gray-800" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
                 {state === 'active' && '파일을 여기에 놓으세요.'}
                 {state === 'accept' && '✅ 업로드 준비 완료.'}

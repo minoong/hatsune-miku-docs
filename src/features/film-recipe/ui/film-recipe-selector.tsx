@@ -29,12 +29,12 @@ export const FilmRecipeSelector = ({ selectedRecipe, onRecipeSelect, onClose }: 
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-50 flex flex-col">
+    <div className="fixed inset-0 z-50 flex flex-col bg-white">
       {/* 헤더 */}
-      <div className="bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between">
+      <div className="flex items-center justify-between border-b border-gray-200 bg-white px-4 py-4">
         <div className="flex items-center space-x-3">
           <Button variant="ghost" onClick={onClose} className="p-2">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </Button>
@@ -49,7 +49,7 @@ export const FilmRecipeSelector = ({ selectedRecipe, onRecipeSelect, onClose }: 
       </div>
 
       {/* 탭 */}
-      <div className="bg-white border-b border-gray-200 px-4">
+      <div className="border-b border-gray-200 bg-white px-4">
         <div className="flex space-x-8">
           {[
             { key: 'all', label: '전체' },
@@ -59,7 +59,7 @@ export const FilmRecipeSelector = ({ selectedRecipe, onRecipeSelect, onClose }: 
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as Any)}
-              className={`py-4 text-sm font-medium border-b-2 transition-colors ${
+              className={`border-b-2 py-4 text-sm font-medium transition-colors ${
                 activeTab === tab.key ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -75,13 +75,13 @@ export const FilmRecipeSelector = ({ selectedRecipe, onRecipeSelect, onClose }: 
           {/* 기본 (레시피 없음) 옵션 */}
           <div
             onClick={() => onRecipeSelect(null)}
-            className={`relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-300 ${
-              !selectedRecipe ? 'ring-2 ring-blue-500 scale-105 shadow-lg' : 'hover:scale-102 shadow-md hover:shadow-lg'
+            className={`relative cursor-pointer overflow-hidden rounded-2xl transition-all duration-300 ${
+              !selectedRecipe ? 'scale-105 shadow-lg ring-2 ring-blue-500' : 'shadow-md hover:scale-102 hover:shadow-lg'
             }`}
           >
-            <div className="h-32 bg-gradient-to-br from-gray-300 to-gray-500 relative flex items-center justify-center">
+            <div className="relative flex h-32 items-center justify-center bg-gradient-to-br from-gray-300 to-gray-500">
               <div className="text-center">
-                <svg className="w-8 h-8 text-white/80 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="mx-auto mb-2 h-8 w-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -89,13 +89,13 @@ export const FilmRecipeSelector = ({ selectedRecipe, onRecipeSelect, onClose }: 
                     d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L5.636 5.636"
                   />
                 </svg>
-                <span className="text-white/90 text-sm font-medium">원본</span>
+                <span className="text-sm font-medium text-white/90">원본</span>
               </div>
 
               {!selectedRecipe && (
                 <div className="absolute top-3 right-3">
-                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
+                    <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path
                         fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -107,7 +107,7 @@ export const FilmRecipeSelector = ({ selectedRecipe, onRecipeSelect, onClose }: 
               )}
             </div>
             <div className="bg-white p-4">
-              <h3 className="font-semibold text-gray-900 text-lg mb-1">필터 없음</h3>
+              <h3 className="mb-1 text-lg font-semibold text-gray-900">필터 없음</h3>
               <p className="text-sm text-gray-600">원본 사진 그대로</p>
             </div>
           </div>

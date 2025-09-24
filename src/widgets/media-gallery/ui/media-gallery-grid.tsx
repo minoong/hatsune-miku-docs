@@ -47,16 +47,13 @@ export const MediaGalleryGrid = ({
             <motion.div key={file.id} variants={itemVariants} layout className="relative">
               {enableSelection && (
                 <div className="absolute top-3 left-3 z-10">
-                  <motion.label className="flex items-center cursor-pointer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                  <motion.label className="flex cursor-pointer items-center" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <input type="checkbox" checked={selectedFiles.includes(file.id)} onChange={() => onFileSelect(file.id)} className="sr-only" />
                     <div
-                      className={`
-                      w-5 h-5 rounded border-2 flex items-center justify-center transition-all
-                      ${selectedFiles.includes(file.id) ? 'bg-blue-500 border-blue-500' : 'bg-white border-gray-300 hover:border-blue-400'}
-                    `}
+                      className={`flex h-5 w-5 items-center justify-center rounded border-2 transition-all ${selectedFiles.includes(file.id) ? 'border-blue-500 bg-blue-500' : 'border-gray-300 bg-white hover:border-blue-400'} `}
                     >
                       {selectedFiles.includes(file.id) && (
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path
                             fillRule="evenodd"
                             d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -69,13 +66,13 @@ export const MediaGalleryGrid = ({
                 </div>
               )}
 
-              <div className="flex items-center space-x-4 p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-                <div className="flex-shrink-0 w-20 h-20">
-                  <img src={file.thumbnail || file.preview || URL.createObjectURL(file.file)} alt={file.name} className="w-full h-full object-cover rounded" />
+              <div className="flex items-center space-x-4 rounded-lg border border-gray-200 bg-white p-4 transition-shadow hover:shadow-md">
+                <div className="h-20 w-20 flex-shrink-0">
+                  <img src={file.thumbnail || file.preview || URL.createObjectURL(file.file)} alt={file.name} className="h-full w-full rounded object-cover" />
                 </div>
 
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-medium text-gray-900 truncate">{file.name}</h3>
+                <div className="min-w-0 flex-1">
+                  <h3 className="truncate text-sm font-medium text-gray-900">{file.name}</h3>
                   <p className="text-sm text-gray-500">{file.mimeType}</p>
                   {file.metadata && (
                     <p className="text-xs text-gray-400">
@@ -86,8 +83,8 @@ export const MediaGalleryGrid = ({
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <button onClick={() => onFileClick(file)} className="p-2 text-gray-400 hover:text-blue-600 transition-colors" aria-label="파일 보기">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <button onClick={() => onFileClick(file)} className="p-2 text-gray-400 transition-colors hover:text-blue-600" aria-label="파일 보기">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                       <path
                         strokeLinecap="round"
@@ -100,10 +97,10 @@ export const MediaGalleryGrid = ({
 
                   <button
                     onClick={() => onFileDownload(file.id)}
-                    className="p-2 text-gray-400 hover:text-green-600 transition-colors"
+                    className="p-2 text-gray-400 transition-colors hover:text-green-600"
                     aria-label="파일 다운로드"
                   >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -113,8 +110,8 @@ export const MediaGalleryGrid = ({
                     </svg>
                   </button>
 
-                  <button onClick={() => onFileDelete(file.id)} className="p-2 text-gray-400 hover:text-red-600 transition-colors" aria-label="파일 삭제">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <button onClick={() => onFileDelete(file.id)} className="p-2 text-gray-400 transition-colors hover:text-red-600" aria-label="파일 삭제">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -139,16 +136,13 @@ export const MediaGalleryGrid = ({
           <motion.div key={file.id} variants={itemVariants} layout className="relative" style={viewMode === 'masonry' ? { breakInside: 'avoid' } : undefined}>
             {enableSelection && (
               <div className="absolute top-3 left-3 z-10">
-                <motion.label className="flex items-center cursor-pointer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <motion.label className="flex cursor-pointer items-center" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                   <input type="checkbox" checked={selectedFiles.includes(file.id)} onChange={() => onFileSelect(file.id)} className="sr-only" />
                   <div
-                    className={`
-                    w-5 h-5 rounded border-2 flex items-center justify-center transition-all backdrop-blur-sm
-                    ${selectedFiles.includes(file.id) ? 'bg-blue-500 border-blue-500' : 'bg-white bg-opacity-90 border-gray-300 hover:border-blue-400'}
-                  `}
+                    className={`flex h-5 w-5 items-center justify-center rounded border-2 backdrop-blur-sm transition-all ${selectedFiles.includes(file.id) ? 'border-blue-500 bg-blue-500' : 'bg-opacity-90 border-gray-300 bg-white hover:border-blue-400'} `}
                   >
                     {selectedFiles.includes(file.id) && (
-                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path
                           fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"

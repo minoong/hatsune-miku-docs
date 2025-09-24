@@ -90,9 +90,9 @@ export const ImprovedFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipe
 
   return (
     <ImprovedBottomSheet isOpen={isOpen} onClose={onClose} maxHeight="60vh">
-      <div className="flex flex-col h-full">
+      <div className="flex h-full flex-col">
         {/* 헤더 */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+        <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
           <h2 className="text-lg font-semibold text-gray-900">필름 레시피</h2>
           {selectedRecipe && (
             <Button variant="ghost" onClick={handleClearSelection} className="text-sm">
@@ -102,13 +102,13 @@ export const ImprovedFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipe
         </div>
 
         {/* 카테고리 가로 스크롤 */}
-        <div className="px-4 py-3 border-b border-gray-100">
-          <div ref={categoryScrollRef} className="flex space-x-2 overflow-x-auto scrollbar-hide">
+        <div className="border-b border-gray-100 px-4 py-3">
+          <div ref={categoryScrollRef} className="scrollbar-hide flex space-x-2 overflow-x-auto">
             {CATEGORIES.map((category) => (
               <button
                 key={category.key}
                 onClick={() => setActiveTab(category.key)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${getCategoryStyle(category)}`}
+                className={`rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 ${getCategoryStyle(category)}`}
               >
                 {category.label}
               </button>
@@ -121,22 +121,22 @@ export const ImprovedFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipe
           <div className="p-4">
             {/* 기본 (레시피 없음) 옵션 */}
             <div className="mb-4">
-              <div className="flex-shrink-0 w-20 mr-3">
+              <div className="mr-3 w-20 flex-shrink-0">
                 <div
                   onClick={() => handleClearSelection()}
-                  className={`relative overflow-hidden rounded-xl cursor-pointer transition-all duration-200 ${
-                    !selectedRecipe ? 'ring-2 ring-blue-500 scale-105' : 'hover:scale-105'
+                  className={`relative cursor-pointer overflow-hidden rounded-xl transition-all duration-200 ${
+                    !selectedRecipe ? 'scale-105 ring-2 ring-blue-500' : 'hover:scale-105'
                   }`}
                 >
-                  <div className="h-16 bg-gradient-to-br from-gray-200 to-gray-400 relative flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="relative flex h-16 items-center justify-center bg-gradient-to-br from-gray-200 to-gray-400">
+                    <svg className="h-6 w-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636" />
                     </svg>
 
                     {!selectedRecipe && (
                       <div className="absolute top-1 right-1">
-                        <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center shadow-sm">
-                          <svg className="w-2.5 h-2.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                        <div className="flex h-4 w-4 items-center justify-center rounded-full bg-white shadow-sm">
+                          <svg className="h-2.5 w-2.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                             <path
                               fillRule="evenodd"
                               d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -148,7 +148,7 @@ export const ImprovedFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipe
                     )}
                   </div>
                   <div className="bg-white px-2 py-2">
-                    <h3 className="text-xs font-medium text-gray-900 text-center leading-tight">원본</h3>
+                    <h3 className="text-center text-xs leading-tight font-medium text-gray-900">원본</h3>
                   </div>
                 </div>
               </div>
@@ -159,8 +159,8 @@ export const ImprovedFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipe
               <>
                 {/* FUJI 섹션 */}
                 <div className="mb-4">
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">FUJI</h3>
-                  <div ref={recipeScrollRef} className="flex overflow-x-auto pb-2 scrollbar-hide">
+                  <h3 className="mb-2 text-sm font-medium text-gray-700">FUJI</h3>
+                  <div ref={recipeScrollRef} className="scrollbar-hide flex overflow-x-auto pb-2">
                     {FILM_RECIPES.filter((recipe) => recipe.brand === 'fuji').map((recipe) => (
                       <CompactFilmRecipeCard
                         key={recipe.id}
@@ -174,8 +174,8 @@ export const ImprovedFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipe
 
                 {/* KODAK 섹션 */}
                 <div className="mb-4">
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">KODAK</h3>
-                  <div className="flex overflow-x-auto pb-2 scrollbar-hide">
+                  <h3 className="mb-2 text-sm font-medium text-gray-700">KODAK</h3>
+                  <div className="scrollbar-hide flex overflow-x-auto pb-2">
                     {FILM_RECIPES.filter((recipe) => recipe.brand === 'kodak').map((recipe) => (
                       <CompactFilmRecipeCard
                         key={recipe.id}
@@ -189,7 +189,7 @@ export const ImprovedFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipe
               </>
             ) : (
               <div className="mb-4">
-                <div className="flex overflow-x-auto pb-2 scrollbar-hide">
+                <div className="scrollbar-hide flex overflow-x-auto pb-2">
                   {filteredRecipes.map((recipe) => (
                     <CompactFilmRecipeCard
                       key={recipe.id}

@@ -31,11 +31,11 @@ export const Toast = ({ message, isVisible, position = 'center', duration = 2000
 
   return (
     <div
-      className={`fixed left-1/2 -translate-x-1/2 ${positionClasses[position]} z-[100] transition-opacity duration-300 pointer-events-none ${
+      className={`fixed left-1/2 -translate-x-1/2 ${positionClasses[position]} pointer-events-none z-[100] transition-opacity duration-300 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <div className="bg-black/80 text-white px-4 py-2 rounded-lg backdrop-blur-sm text-sm font-medium">{message}</div>
+      <div className="rounded-lg bg-black/80 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">{message}</div>
     </div>
   );
 };

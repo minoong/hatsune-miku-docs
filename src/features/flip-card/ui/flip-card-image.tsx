@@ -10,8 +10,8 @@ export const FlipCardImage = ({ src, alt, className = '', objectFit = 'cover' }:
   }[objectFit];
 
   return (
-    <div className={`absolute top-0 left-0 w-full h-full ${className}`}>
-      <img src={src} alt={alt} className={`absolute top-0 left-0 w-full h-full ${objectFitClass}`} />
+    <div className={`absolute top-0 left-0 h-full w-full ${className}`}>
+      <img src={src} alt={alt} className={`absolute top-0 left-0 h-full w-full ${objectFitClass}`} />
     </div>
   );
 };

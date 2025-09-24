@@ -85,10 +85,10 @@ export const CustomContent: Story = {
     disabled: false,
     children: (
       <div className="text-center">
-        <div className="text-4xl mb-4">📸</div>
-        <h3 className="text-lg font-semibold mb-2">Upload Your Photos</h3>
+        <div className="mb-4 text-4xl">📸</div>
+        <h3 className="mb-2 text-lg font-semibold">Upload Your Photos</h3>
         <p className="text-gray-600">Drag and drop your photos here or click to browse</p>
-        <p className="text-sm text-gray-500 mt-2">Supports JPEG, PNG, GIF, WebP formats</p>
+        <p className="mt-2 text-sm text-gray-500">Supports JPEG, PNG, GIF, WebP formats</p>
       </div>
     ),
   },

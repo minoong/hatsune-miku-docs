@@ -122,7 +122,7 @@ export const ImprovedBottomSheet = ({ isOpen, onClose, children, title, maxHeigh
       {/* Backdrop - 사진을 가릴 때만 표시 */}
       {hidePhoto && (
         <div
-          className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+          className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
           onClick={onClose}
         />
       )}
@@ -130,7 +130,7 @@ export const ImprovedBottomSheet = ({ isOpen, onClose, children, title, maxHeigh
       {/* Bottom Sheet */}
       <div
         ref={sheetRef}
-        className={`fixed inset-x-0 bottom-0 bg-white rounded-t-[20px] shadow-2xl z-50 transition-all duration-300 ease-out ${
+        className={`fixed inset-x-0 bottom-0 z-50 rounded-t-[20px] bg-white shadow-2xl transition-all duration-300 ease-out ${
           isOpen ? 'translate-y-0' : 'translate-y-full'
         }`}
         style={{
@@ -140,21 +140,21 @@ export const ImprovedBottomSheet = ({ isOpen, onClose, children, title, maxHeigh
       >
         {/* Handle Bar */}
         <div
-          className="flex justify-center py-3 cursor-grab active:cursor-grabbing"
+          className="flex cursor-grab justify-center py-3 active:cursor-grabbing"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleMouseDown}
         >
-          <div className="w-10 h-1.5 bg-gray-300 rounded-full" />
+          <div className="h-1.5 w-10 rounded-full bg-gray-300" />
         </div>
 
         {/* Header */}
         {title && (
-          <div className="flex items-center justify-between px-4 pb-4 border-b border-gray-200">
+          <div className="flex items-center justify-between border-b border-gray-200 px-4 pb-4">
             <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600 p-2 -m-2">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button onClick={onClose} className="-m-2 p-2 text-gray-400 hover:text-gray-600">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>

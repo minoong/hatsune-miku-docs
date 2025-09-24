@@ -41,12 +41,12 @@ export const EditControls = ({ settings, onSettingsChange, onClose }: EditContro
   const hasChanges = Object.values(settings).some((value) => value !== 0);
 
   return (
-    <div className="fixed inset-x-0 bottom-0 bg-white rounded-t-3xl shadow-2xl z-50 max-h-[70vh] flex flex-col">
+    <div className="fixed inset-x-0 bottom-0 z-50 flex max-h-[70vh] flex-col rounded-t-3xl bg-white shadow-2xl">
       {/* 헤더 */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+      <div className="flex items-center justify-between border-b border-gray-200 p-4">
         <div className="flex items-center space-x-3">
           <Button variant="ghost" onClick={onClose} className="p-2">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </Button>
@@ -61,11 +61,11 @@ export const EditControls = ({ settings, onSettingsChange, onClose }: EditContro
       </div>
 
       {/* 탭 */}
-      <div className="px-4 border-b border-gray-200">
+      <div className="border-b border-gray-200 px-4">
         <div className="flex space-x-8">
           <button
             onClick={() => setActiveTab('basic')}
-            className={`py-3 text-sm font-medium border-b-2 transition-colors ${
+            className={`border-b-2 py-3 text-sm font-medium transition-colors ${
               activeTab === 'basic' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500'
             }`}
           >
@@ -73,7 +73,7 @@ export const EditControls = ({ settings, onSettingsChange, onClose }: EditContro
           </button>
           <button
             onClick={() => setActiveTab('advanced')}
-            className={`py-3 text-sm font-medium border-b-2 transition-colors ${
+            className={`border-b-2 py-3 text-sm font-medium transition-colors ${
               activeTab === 'advanced' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500'
             }`}
           >
@@ -83,7 +83,7 @@ export const EditControls = ({ settings, onSettingsChange, onClose }: EditContro
       </div>
 
       {/* 컨트롤 */}
-      <div className="flex-1 overflow-auto p-4 space-y-6">
+      <div className="flex-1 space-y-6 overflow-auto p-4">
         {filteredControls.map((control) => (
           <Slider
             key={control.key}

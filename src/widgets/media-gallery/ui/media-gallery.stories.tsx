@@ -36,7 +36,7 @@ const meta: Meta<typeof MediaGallery> = {
   },
   decorators: [
     (Story) => (
-      <div className="p-6 min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 p-6">
         <Story />
       </div>
     ),

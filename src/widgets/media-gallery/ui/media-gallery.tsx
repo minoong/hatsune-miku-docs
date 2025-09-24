@@ -102,9 +102,9 @@ export const MediaGallery = ({ onFileClick, onFileDownload, className = '', ...o
           enableSelection={options.enableSelection ?? true}
         />
       ) : gallery.state.files.length === 0 ? (
-        <motion.div className="text-center py-12" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="text-gray-400 mb-4">
-            <svg className="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <motion.div className="py-12 text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="mb-4 text-gray-400">
+            <svg className="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -113,24 +113,24 @@ export const MediaGallery = ({ onFileClick, onFileDownload, className = '', ...o
               />
             </svg>
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">업로드된 파일이 없습니다</h3>
+          <h3 className="mb-2 text-lg font-medium text-gray-900">업로드된 파일이 없습니다</h3>
           <p className="text-gray-500">파일을 드래그하거나 업로드 영역을 클릭하세요.</p>
         </motion.div>
       ) : (
-        <motion.div className="text-center py-12" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="text-gray-400 mb-4">
-            <svg className="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <motion.div className="py-12 text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="mb-4 text-gray-400">
+            <svg className="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">검색 결과가 없습니다</h3>
+          <h3 className="mb-2 text-lg font-medium text-gray-900">검색 결과가 없습니다</h3>
           <p className="text-gray-500">검색어나 필터를 조정해보세요.</p>
           <button
             onClick={() => {
               gallery.setSearchQuery('');
               gallery.setFilterBy('all');
             }}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            className="mt-4 rounded-lg bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
           >
             필터 지우기
           </button>
@@ -140,15 +140,15 @@ export const MediaGallery = ({ onFileClick, onFileDownload, className = '', ...o
       {/* Loading State */}
       {gallery.state.isLoading && (
         <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="bg-white rounded-lg p-6 shadow-xl">
+          <div className="rounded-lg bg-white p-6 shadow-xl">
             <div className="flex items-center space-x-3">
               <motion.div
-                className="w-6 h-6 border-3 border-blue-500 border-t-transparent rounded-full"
+                className="h-6 w-6 rounded-full border-3 border-blue-500 border-t-transparent"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
               />

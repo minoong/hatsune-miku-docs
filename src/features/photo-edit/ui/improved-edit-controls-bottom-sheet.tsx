@@ -66,9 +66,9 @@ export const ImprovedEditControlsBottomSheet = ({ isOpen, settings, onSettingsCh
 
   return (
     <ImprovedBottomSheet isOpen={isOpen} onClose={onClose} maxHeight="75vh">
-      <div className="flex flex-col h-full">
+      <div className="flex h-full flex-col">
         {/* 헤더 */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+        <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
           <h2 className="text-lg font-semibold text-gray-900">조정</h2>
           {hasChanges && (
             <Button variant="ghost" onClick={handleReset} className="text-sm">
@@ -78,13 +78,13 @@ export const ImprovedEditControlsBottomSheet = ({ isOpen, settings, onSettingsCh
         </div>
 
         {/* 카테고리 가로 스크롤 */}
-        <div className="px-4 py-3 border-b border-gray-100">
+        <div className="border-b border-gray-100 px-4 py-3">
           <div className="flex space-x-2">
             {CATEGORIES.map((category) => (
               <button
                 key={category.key}
                 onClick={() => setActiveTab(category.key)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${getCategoryStyle(category)}`}
+                className={`rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 ${getCategoryStyle(category)}`}
               >
                 {category.label}
               </button>
@@ -93,7 +93,7 @@ export const ImprovedEditControlsBottomSheet = ({ isOpen, settings, onSettingsCh
         </div>
 
         {/* 컨트롤 */}
-        <div className="flex-1 overflow-auto p-4 space-y-4">
+        <div className="flex-1 space-y-4 overflow-auto p-4">
           {filteredControls.map((control) => (
             <Slider
               key={control.key}

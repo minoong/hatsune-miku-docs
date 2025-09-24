@@ -34,9 +34,9 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
 
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose} title="필름 레시피" snapPoints={[0.6, 0.9]} initialSnap={0}>
-      <div className="flex flex-col h-full">
+      <div className="flex h-full flex-col">
         {/* 탭과 초기화 버튼 */}
-        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+        <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4">
           <div className="flex space-x-6">
             {[
               { key: 'all', label: '전체' },
@@ -46,7 +46,7 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key as Any)}
-                className={`py-2 text-sm font-medium border-b-2 transition-colors ${
+                className={`border-b-2 py-2 text-sm font-medium transition-colors ${
                   activeTab === tab.key ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
               >
@@ -67,17 +67,17 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
           <div className="p-4">
             {/* 기본 (레시피 없음) 옵션 */}
             <div className="mb-4">
-              <h3 className="text-sm font-medium text-gray-700 mb-3">기본</h3>
-              <div className="flex-shrink-0 w-32">
+              <h3 className="mb-3 text-sm font-medium text-gray-700">기본</h3>
+              <div className="w-32 flex-shrink-0">
                 <div
                   onClick={() => handleClearSelection()}
-                  className={`relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-300 ${
-                    !selectedRecipe ? 'ring-2 ring-blue-500 scale-105 shadow-lg' : 'hover:scale-105 shadow-md hover:shadow-lg'
+                  className={`relative cursor-pointer overflow-hidden rounded-2xl transition-all duration-300 ${
+                    !selectedRecipe ? 'scale-105 shadow-lg ring-2 ring-blue-500' : 'shadow-md hover:scale-105 hover:shadow-lg'
                   }`}
                 >
-                  <div className="h-24 bg-gradient-to-br from-gray-300 to-gray-500 relative flex items-center justify-center">
+                  <div className="relative flex h-24 items-center justify-center bg-gradient-to-br from-gray-300 to-gray-500">
                     <div className="text-center">
-                      <svg className="w-6 h-6 text-white/80 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="mx-auto mb-1 h-6 w-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -85,13 +85,13 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
                           d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L5.636 5.636"
                         />
                       </svg>
-                      <span className="text-white/90 text-xs font-medium">원본</span>
+                      <span className="text-xs font-medium text-white/90">원본</span>
                     </div>
 
                     {!selectedRecipe && (
                       <div className="absolute top-2 right-2">
-                        <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                          <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-500">
+                          <svg className="h-2.5 w-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path
                               fillRule="evenodd"
                               d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -103,7 +103,7 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
                     )}
                   </div>
                   <div className="bg-white p-3">
-                    <h3 className="font-semibold text-gray-900 text-sm leading-tight mb-1">필터 없음</h3>
+                    <h3 className="mb-1 text-sm leading-tight font-semibold text-gray-900">필터 없음</h3>
                     <p className="text-xs text-gray-600">원본 사진 그대로</p>
                   </div>
                 </div>
@@ -115,8 +115,8 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
               <>
                 {/* FUJI 섹션 */}
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-gray-700 mb-3">FUJI</h3>
-                  <div className="flex overflow-x-auto pb-4 scrollbar-hide">
+                  <h3 className="mb-3 text-sm font-medium text-gray-700">FUJI</h3>
+                  <div className="scrollbar-hide flex overflow-x-auto pb-4">
                     {FILM_RECIPES.filter((recipe) => recipe.brand === 'fuji').map((recipe) => (
                       <FilmRecipeCardHorizontal
                         key={recipe.id}
@@ -130,8 +130,8 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
 
                 {/* KODAK 섹션 */}
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-gray-700 mb-3">KODAK</h3>
-                  <div className="flex overflow-x-auto pb-4 scrollbar-hide">
+                  <h3 className="mb-3 text-sm font-medium text-gray-700">KODAK</h3>
+                  <div className="scrollbar-hide flex overflow-x-auto pb-4">
                     {FILM_RECIPES.filter((recipe) => recipe.brand === 'kodak').map((recipe) => (
                       <FilmRecipeCardHorizontal
                         key={recipe.id}
@@ -145,8 +145,8 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
               </>
             ) : (
               <div className="mb-6">
-                <h3 className="text-sm font-medium text-gray-700 mb-3">{activeTab.toUpperCase()}</h3>
-                <div className="flex overflow-x-auto pb-4 scrollbar-hide">
+                <h3 className="mb-3 text-sm font-medium text-gray-700">{activeTab.toUpperCase()}</h3>
+                <div className="scrollbar-hide flex overflow-x-auto pb-4">
                   {filteredRecipes.map((recipe) => (
                     <FilmRecipeCardHorizontal
                       key={recipe.id}

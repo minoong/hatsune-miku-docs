@@ -11,7 +11,7 @@ export const Slider = ({ label, showValue = true, value, min = -100, max = 100, 
   return (
     <div className={`space-y-2 ${className}`}>
       {label && (
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <label className="text-sm font-medium text-gray-700">{label}</label>
           {showValue && <span className="text-sm text-gray-500">{displayValue > 0 ? `+${displayValue}` : displayValue}</span>}
         </div>
@@ -23,7 +23,7 @@ export const Slider = ({ label, showValue = true, value, min = -100, max = 100, 
           max={max}
           step={step}
           value={value}
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+          className="slider h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200"
           {...props}
         />
         <style>{`

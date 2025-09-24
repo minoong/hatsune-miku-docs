@@ -134,7 +134,7 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 z-40"
+            className="fixed inset-0 z-40 bg-black/50"
             onClick={onClose}
           />
 
@@ -149,7 +149,7 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
               stiffness: 300,
               mass: 0.8,
             }}
-            className="fixed inset-x-0 bottom-0 bg-white rounded-t-3xl z-50 shadow-2xl"
+            className="fixed inset-x-0 bottom-0 z-50 rounded-t-3xl bg-white shadow-2xl"
             style={{ maxHeight: '35vh' }}
             drag="y"
             dragConstraints={{ top: 0 }}
@@ -161,22 +161,22 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
             }}
           >
             {/* Drag Handle */}
-            <div className="flex justify-center pt-3 pb-1 cursor-grab active:cursor-grabbing">
-              <div className="w-8 h-1 bg-gray-300 rounded-full" />
+            <div className="flex cursor-grab justify-center pt-3 pb-1 active:cursor-grabbing">
+              <div className="h-1 w-8 rounded-full bg-gray-300" />
             </div>
 
-            <div className="flex flex-col h-full pb-6">
+            <div className="flex h-full flex-col pb-6">
               {/* 헤더 - 컴팩트하게 */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="flex items-center justify-between px-4 py-2 border-b border-gray-200 cursor-grab active:cursor-grabbing"
+                className="flex cursor-grab items-center justify-between border-b border-gray-200 px-4 py-2 active:cursor-grabbing"
               >
                 <h2 className="text-lg font-semibold text-gray-900">필름 레시피</h2>
                 {selectedRecipe && (
                   <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}>
-                    <Button variant="ghost" onClick={() => handleRecipeSelect(null)} className="text-sm px-2 py-1">
+                    <Button variant="ghost" onClick={() => handleRecipeSelect(null)} className="px-2 py-1 text-sm">
                       초기화
                     </Button>
                   </motion.div>
@@ -188,7 +188,7 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
-                className="px-4 py-2 border-b border-gray-100"
+                className="border-b border-gray-100 px-4 py-2"
               >
                 <div className="flex space-x-2">
                   {CATEGORIES.map((category, index) => (
@@ -199,7 +199,7 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
                       transition={{ delay: 0.2 + index * 0.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => handleTabClick(category.key)}
-                      className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 whitespace-nowrap ${getCategoryStyle(category)}`}
+                      className={`rounded-full px-3 py-1.5 text-sm whitespace-nowrap transition-all duration-200 ${getCategoryStyle(category)}`}
                     >
                       {category.label}
                     </motion.button>
@@ -210,7 +210,7 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
               {/* 레시피 스크롤 - 메인 영역 */}
               <div className="flex-1 overflow-hidden">
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }} className="px-4 py-3">
-                  <div ref={recipeScrollRef} className="flex overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  <div ref={recipeScrollRef} className="scrollbar-hide flex overflow-x-auto pb-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {getFilteredRecipes().map((item, index) => {
                       if (item.type === 'original') {
                         return (
@@ -219,18 +219,18 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.3 + index * 0.05 }}
-                            className="flex-shrink-0 w-20 mr-3"
+                            className="mr-3 w-20 flex-shrink-0"
                           >
                             <motion.div
                               whileTap={{ scale: 0.95 }}
                               whileHover={{ scale: 1.05 }}
                               onClick={() => handleRecipeSelect(null)}
-                              className={`relative overflow-hidden rounded-xl cursor-pointer transition-all duration-200 ${
-                                !selectedRecipe ? 'ring-2 ring-blue-500 scale-105' : ''
+                              className={`relative cursor-pointer overflow-hidden rounded-xl transition-all duration-200 ${
+                                !selectedRecipe ? 'scale-105 ring-2 ring-blue-500' : ''
                               }`}
                             >
-                              <div className="h-16 bg-gradient-to-br from-gray-200 to-gray-400 relative flex items-center justify-center">
-                                <svg className="w-6 h-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <div className="relative flex h-16 items-center justify-center bg-gradient-to-br from-gray-200 to-gray-400">
+                                <svg className="h-6 w-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -247,8 +247,8 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
                                       exit={{ opacity: 0, scale: 0 }}
                                       className="absolute top-1 right-1"
                                     >
-                                      <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center shadow-sm">
-                                        <svg className="w-2.5 h-2.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                      <div className="flex h-4 w-4 items-center justify-center rounded-full bg-white shadow-sm">
+                                        <svg className="h-2.5 w-2.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                                           <path
                                             fillRule="evenodd"
                                             d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -261,7 +261,7 @@ export const CompactFilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeS
                                 </AnimatePresence>
                               </div>
                               <div className="bg-white px-2 py-2">
-                                <h3 className="text-xs font-medium text-gray-900 text-center leading-tight">원본</h3>
+                                <h3 className="text-center text-xs leading-tight font-medium text-gray-900">원본</h3>
                               </div>
                             </motion.div>
                           </motion.div>

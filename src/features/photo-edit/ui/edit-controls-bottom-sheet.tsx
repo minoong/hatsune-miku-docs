@@ -44,13 +44,13 @@ export const EditControlsBottomSheet = ({ isOpen, settings, onSettingsChange, on
 
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose} title="조정" snapPoints={[0.5, 0.85]} initialSnap={0}>
-      <div className="flex flex-col h-full">
+      <div className="flex h-full flex-col">
         {/* 탭과 초기화 버튼 */}
-        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+        <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4">
           <div className="flex space-x-8">
             <button
               onClick={() => setActiveTab('basic')}
-              className={`py-2 text-sm font-medium border-b-2 transition-colors ${
+              className={`border-b-2 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'basic' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500'
               }`}
             >
@@ -58,7 +58,7 @@ export const EditControlsBottomSheet = ({ isOpen, settings, onSettingsChange, on
             </button>
             <button
               onClick={() => setActiveTab('advanced')}
-              className={`py-2 text-sm font-medium border-b-2 transition-colors ${
+              className={`border-b-2 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'advanced' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500'
               }`}
             >
@@ -74,7 +74,7 @@ export const EditControlsBottomSheet = ({ isOpen, settings, onSettingsChange, on
         </div>
 
         {/* 컨트롤 */}
-        <div className="flex-1 overflow-auto p-4 space-y-6">
+        <div className="flex-1 space-y-6 overflow-auto p-4">
           {filteredControls.map((control) => (
             <Slider
               key={control.key}

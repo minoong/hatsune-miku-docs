@@ -26,9 +26,9 @@ export const ImageCard = ({ media, variant = 'compact' }: ImageCardProps) => {
 
   if (hasError) {
     return (
-      <div className={`${imageHeight} bg-gray-100 rounded-lg flex items-center justify-center`}>
+      <div className={`${imageHeight} flex items-center justify-center rounded-lg bg-gray-100`}>
         <div className="text-center text-gray-500">
-          <svg className="w-12 h-12 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="mx-auto mb-2 h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -43,12 +43,12 @@ export const ImageCard = ({ media, variant = 'compact' }: ImageCardProps) => {
   }
 
   return (
-    <div className={`relative ${imageHeight} bg-gray-100 rounded-lg overflow-hidden`}>
+    <div className={`relative ${imageHeight} overflow-hidden rounded-lg bg-gray-100`}>
       {/* Loading placeholder */}
       {isLoading && (
-        <motion.div className="absolute inset-0 bg-gray-200 flex items-center justify-center" initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div className="absolute inset-0 flex items-center justify-center bg-gray-200" initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.div
-            className="w-8 h-8 border-4 border-gray-300 border-t-blue-500 rounded-full"
+            className="h-8 w-8 rounded-full border-4 border-gray-300 border-t-blue-500"
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
           />
@@ -59,7 +59,7 @@ export const ImageCard = ({ media, variant = 'compact' }: ImageCardProps) => {
       <motion.img
         src={media.preview || media.thumbnail || URL.createObjectURL(media.file)}
         alt={media.name}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+        className={`h-full w-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
         onLoad={handleImageLoad}
         onError={handleImageError}
         initial={{ scale: 1.1 }}
@@ -69,8 +69,8 @@ export const ImageCard = ({ media, variant = 'compact' }: ImageCardProps) => {
 
       {/* Image metadata overlay */}
       {media.metadata && (
-        <div className="absolute bottom-2 left-2 right-2">
-          <div className="bg-black/50 bg-opacity-50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+        <div className="absolute right-2 bottom-2 left-2">
+          <div className="bg-opacity-50 rounded bg-black/50 px-2 py-1 text-xs text-white backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <span>
                 {media.metadata.width}×{media.metadata.height}
@@ -84,12 +84,12 @@ export const ImageCard = ({ media, variant = 'compact' }: ImageCardProps) => {
       {/* EXIF indicator */}
       {media.exifData && (
         <motion.div
-          className="absolute top-2 right-2 w-6 h-6 bg-blue-500 bg-opacity-80 rounded-full flex items-center justify-center"
+          className="bg-opacity-80 absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-blue-500"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"
               d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
@@ -102,7 +102,7 @@ export const ImageCard = ({ media, variant = 'compact' }: ImageCardProps) => {
       {/* Orientation indicator for detailed view */}
       {isDetailed && media.metadata && media.metadata.orientation !== 'square' && (
         <div className="absolute top-2 left-2">
-          <div className="bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+          <div className="bg-opacity-50 rounded bg-black px-2 py-1 text-xs text-white backdrop-blur-sm">
             {media.metadata.orientation === 'landscape' ? '📐' : '📏'}
           </div>
         </div>

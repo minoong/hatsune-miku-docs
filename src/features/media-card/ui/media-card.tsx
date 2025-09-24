@@ -30,11 +30,7 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
 
   return (
     <motion.div
-      className={`
-        relative bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden
-        cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-        ${isDetailed ? 'p-4' : 'p-2'}
-      `}
+      className={`relative cursor-pointer overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none ${isDetailed ? 'p-4' : 'p-2'} `}
       whileHover={{ scale: 1.02, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
       whileTap={{ scale: 0.98 }}
       initial={{ opacity: 0, y: 20 }}
@@ -62,13 +58,13 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
           <div className="flex items-center space-x-2">
             {/* View Button */}
             <motion.button
-              className="p-2 bg-white bg-opacity-90 rounded-full text-gray-700 hover:bg-opacity-100 transition-all"
+              className="bg-opacity-90 hover:bg-opacity-100 rounded-full bg-white p-2 text-gray-700 transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => onClick?.(media)}
               aria-label="전체 크기로 보기"
             >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path
                   strokeLinecap="round"
@@ -82,7 +78,7 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
             {/* EXIF Button (for images only) */}
             {media.type === 'image' && media.exifData && (
               <motion.button
-                className="p-2 bg-white bg-opacity-90 rounded-full text-gray-700 hover:bg-opacity-100 transition-all"
+                className="bg-opacity-90 hover:bg-opacity-100 rounded-full bg-white p-2 text-gray-700 transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={(e) => {
@@ -91,7 +87,7 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
                 }}
                 aria-label="EXIF 데이터 보기"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </motion.button>
@@ -100,13 +96,13 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
             {/* Download Button */}
             {onDownload && (
               <motion.button
-                className="p-2 bg-white bg-opacity-90 rounded-full text-gray-700 hover:bg-opacity-100 transition-all"
+                className="bg-opacity-90 hover:bg-opacity-100 rounded-full bg-white p-2 text-gray-700 transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => onDownload(media)}
                 aria-label="파일 다운로드"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -120,13 +116,13 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
             {/* Delete Button */}
             {onDelete && (
               <motion.button
-                className="p-2 bg-red-500 bg-opacity-90 rounded-full text-white hover:bg-opacity-100 transition-all"
+                className="bg-opacity-90 hover:bg-opacity-100 rounded-full bg-red-500 p-2 text-white transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => onDelete(media)}
                 aria-label="파일 삭제"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -142,20 +138,20 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
 
       {/* Metadata */}
       {showMetadata && (
-        <div className="space-y-2 pt-3 border-t border-gray-100">
-          <h3 className={`font-medium text-gray-900 truncate ${isDetailed ? 'text-base' : 'text-sm'}`}>{media.name}</h3>
+        <div className="space-y-2 border-t border-gray-100 pt-3">
+          <h3 className={`truncate font-medium text-gray-900 ${isDetailed ? 'text-base' : 'text-sm'}`}>{media.name}</h3>
 
           <div className="space-y-1">
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <span className="text-xs text-gray-500">타입</span>
               <span className={`font-medium text-gray-700 ${isDetailed ? 'text-sm' : 'text-xs'}`}>{getFileTypeLabel(media.mimeType)}</span>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <span className="text-xs text-gray-500">크기</span>
               <span className={`font-medium text-gray-700 ${isDetailed ? 'text-sm' : 'text-xs'}`}>{formatFileSize(media.size)}</span>
             </div>
             {media.metadata && (
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500">해상도</span>
                 <span className="text-xs font-medium text-gray-700">
                   {media.metadata.width}×{media.metadata.height}
@@ -163,13 +159,13 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
               </div>
             )}
             {media.metadata?.duration && (
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500">재생시간</span>
                 <span className="text-xs font-medium text-gray-700">{formatDuration(media.metadata.duration)}</span>
               </div>
             )}
             {isDetailed && media.exifData?.make && media.exifData?.model && (
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500">카메라</span>
                 <span className="text-xs font-medium text-gray-700">
                   {media.exifData.make} {media.exifData.model}
@@ -177,7 +173,7 @@ export const MediaCard = ({ media, variant = 'compact', showExif = false, showMe
               </div>
             )}
             {isDetailed && media.exifData?.datetime && (
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500">날짜</span>
                 <span className="text-xs font-medium text-gray-700">{new Date(media.exifData.datetime).toLocaleDateString()}</span>
               </div>

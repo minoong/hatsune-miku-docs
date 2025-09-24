@@ -123,7 +123,7 @@ export const BottomSheet = ({ isOpen, onClose, children, title, snapPoints = [0.
       {/* Bottom Sheet */}
       <div
         ref={sheetRef}
-        className="absolute inset-x-0 bottom-0 bg-white rounded-t-[20px] shadow-2xl transition-transform duration-300 ease-out flex flex-col"
+        className="absolute inset-x-0 bottom-0 flex flex-col rounded-t-[20px] bg-white shadow-2xl transition-transform duration-300 ease-out"
         style={{
           transform: `translateY(${finalTranslateY})`,
           height: '100vh',
@@ -132,21 +132,21 @@ export const BottomSheet = ({ isOpen, onClose, children, title, snapPoints = [0.
       >
         {/* Handle Bar */}
         <div
-          className="flex justify-center pb-4 cursor-grab active:cursor-grabbing"
+          className="flex cursor-grab justify-center pb-4 active:cursor-grabbing"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleMouseDown}
         >
-          <div className="w-10 h-1 bg-gray-300 rounded-full" />
+          <div className="h-1 w-10 rounded-full bg-gray-300" />
         </div>
 
         {/* Header */}
         {title && (
-          <div className="flex items-center justify-between px-4 pb-4 border-b border-gray-200">
+          <div className="flex items-center justify-between border-b border-gray-200 px-4 pb-4">
             <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600 p-2 -m-2">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button onClick={onClose} className="-m-2 p-2 text-gray-400 hover:text-gray-600">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>

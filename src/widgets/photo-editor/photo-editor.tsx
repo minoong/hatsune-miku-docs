@@ -86,30 +86,30 @@ export const PhotoEditor = ({ imageData, onSave, onBack }: PhotoEditorProps) => 
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
+    <div className="flex min-h-screen flex-col bg-black">
       {/* 헤더 */}
-      <div className="flex items-center justify-between p-4 bg-black/50 text-white">
-        <Button variant="ghost" onClick={onBack} className="text-white p-2">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="flex items-center justify-between bg-black/50 p-4 text-white">
+        <Button variant="ghost" onClick={onBack} className="p-2 text-white">
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </Button>
 
         <h1 className="text-lg font-medium">편집</h1>
 
-        <Button variant="ghost" onClick={handleSave} className="text-white font-medium">
+        <Button variant="ghost" onClick={handleSave} className="font-medium text-white">
           저장
         </Button>
       </div>
 
       {/* 이미지 뷰 */}
-      <div className="flex-1 flex items-center justify-center p-4 overflow-hidden">
-        <div className="relative max-w-full max-h-full">
+      <div className="flex flex-1 items-center justify-center overflow-hidden p-4">
+        <div className="relative max-h-full max-w-full">
           <img
             ref={imageRef}
             src={imageData}
             alt="편집할 사진"
-            className="max-w-full max-h-full object-contain cursor-pointer"
+            className="max-h-full max-w-full cursor-pointer object-contain"
             style={{ filter: showOriginal ? 'none' : cssFilter }}
             crossOrigin="anonymous"
             {...longPressProps}
@@ -117,7 +117,7 @@ export const PhotoEditor = ({ imageData, onSave, onBack }: PhotoEditorProps) => 
 
           {/* 원본 비교 안내 메시지 (변경사항이 있을 때만) */}
           {hasChanges && !showOriginal && (
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform rounded-full bg-black/60 px-3 py-1 text-sm text-white backdrop-blur-sm">
               길게 눌러서 원본 비교
             </div>
           )}
@@ -125,12 +125,12 @@ export const PhotoEditor = ({ imageData, onSave, onBack }: PhotoEditorProps) => 
       </div>
 
       {/* 하단 컨트롤 */}
-      <div className="flex flex-col h-[8.5rem] bg-black/80 p-4">
+      <div className="flex h-[8.5rem] flex-col bg-black/80 p-4">
         <div className="flex justify-center space-x-6">
           {/* 필름 레시피 버튼 */}
           <button onClick={() => setShowRecipeSelector(true)} className="flex flex-col items-center space-y-1 text-white">
-            <div className={`w-12 h-12 rounded-full flex items-center justify-center ${selectedRecipe ? 'bg-blue-500' : 'bg-white/20'}`}>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`flex h-12 w-12 items-center justify-center rounded-full ${selectedRecipe ? 'bg-blue-500' : 'bg-white/20'}`}>
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -145,11 +145,11 @@ export const PhotoEditor = ({ imageData, onSave, onBack }: PhotoEditorProps) => 
           {/* 편집 컨트롤 버튼 */}
           <button onClick={() => setShowEditControls(true)} className="flex flex-col items-center space-y-1 text-white">
             <div
-              className={`w-12 h-12 rounded-full flex items-center justify-center ${
+              className={`flex h-12 w-12 items-center justify-center rounded-full ${
                 Object.values(editSettings).some((v) => v !== 0) ? 'bg-blue-500' : 'bg-white/20'
               }`}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -165,7 +165,7 @@ export const PhotoEditor = ({ imageData, onSave, onBack }: PhotoEditorProps) => 
         {/* 선택된 필름 레시피 표시 */}
         {selectedRecipe && (
           <div className="mt-3 text-center">
-            <span className="text-white/80 text-sm">
+            <span className="text-sm text-white/80">
               {selectedRecipe.brand.toUpperCase()} {selectedRecipe.name}
             </span>
           </div>

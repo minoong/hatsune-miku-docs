@@ -31,23 +31,23 @@ const MediaGalleryPlayground = (args: Any) => {
     <div className="min-h-screen bg-gray-50 p-6">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">📸 미디어 갤러리 플레이그라운드</h1>
+        <h1 className="mb-2 text-3xl font-bold text-gray-900">📸 미디어 갤러리 플레이그라운드</h1>
         <p className="text-gray-600">사진, 동영상, GIF를 업로드하여 미디어 갤러리를 테스트해보세요. EXIF 데이터 추출, 썸네일, 다양한 보기 모드를 지원합니다.</p>
       </div>
 
       {/* Media Gallery */}
-      <MediaGallery {...args} onFileClick={handleFileClick} onFileDownload={handleFileDownload} className="max-w-7xl mx-auto" />
+      <MediaGallery {...args} onFileClick={handleFileClick} onFileDownload={handleFileDownload} className="mx-auto max-w-7xl" />
 
       {/* File Viewer Modal */}
       {viewerOpen && selectedFile && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={closeViewer}>
-          <div className="relative max-w-4xl max-h-full bg-white rounded-lg overflow-hidden" onClick={(e) => e.stopPropagation()}>
+        <div className="bg-opacity-75 fixed inset-0 z-50 flex items-center justify-center bg-black p-4" onClick={closeViewer}>
+          <div className="relative max-h-full max-w-4xl overflow-hidden rounded-lg bg-white" onClick={(e) => e.stopPropagation()}>
             {/* Close button */}
             <button
               onClick={closeViewer}
-              className="absolute top-4 right-4 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-75 transition-all"
+              className="bg-opacity-50 hover:bg-opacity-75 absolute top-4 right-4 z-10 rounded-full bg-black p-2 text-white transition-all"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -59,12 +59,12 @@ const MediaGalleryPlayground = (args: Any) => {
                   <img
                     src={selectedFile.preview || URL.createObjectURL(selectedFile.file)}
                     alt={selectedFile.name}
-                    className="max-w-full max-h-[70vh] object-contain mx-auto rounded"
+                    className="mx-auto max-h-[70vh] max-w-full rounded object-contain"
                   />
                 </div>
               ) : (
                 <div className="text-center">
-                  <video src={URL.createObjectURL(selectedFile.file)} controls className="max-w-full max-h-[70vh] object-contain mx-auto rounded">
+                  <video src={URL.createObjectURL(selectedFile.file)} controls className="mx-auto max-h-[70vh] max-w-full rounded object-contain">
                     Your browser does not support the video tag.
                   </video>
                 </div>
@@ -72,7 +72,7 @@ const MediaGalleryPlayground = (args: Any) => {
 
               {/* File info */}
               <div className="mt-4 border-t pt-4">
-                <h3 className="font-semibold text-lg mb-2">{selectedFile.name}</h3>
+                <h3 className="mb-2 text-lg font-semibold">{selectedFile.name}</h3>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="text-gray-600">타입:</span>
@@ -107,7 +107,7 @@ const MediaGalleryPlayground = (args: Any) => {
                 {/* EXIF data for images */}
                 {selectedFile.type === 'image' && selectedFile.exifData && (
                   <div className="mt-4 border-t pt-4">
-                    <h4 className="font-semibold mb-2">📷 카메라 정보</h4>
+                    <h4 className="mb-2 font-semibold">📷 카메라 정보</h4>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       {selectedFile.exifData.make && selectedFile.exifData.model && (
                         <div>
@@ -157,8 +157,8 @@ const MediaGalleryPlayground = (args: Any) => {
       )}
 
       {/* Instructions */}
-      <div className="mt-12 max-w-4xl mx-auto bg-white rounded-lg p-6 shadow-sm">
-        <h2 className="text-xl font-semibold mb-4">🧪 테스트 방법</h2>
+      <div className="mx-auto mt-12 max-w-4xl rounded-lg bg-white p-6 shadow-sm">
+        <h2 className="mb-4 text-xl font-semibold">🧪 테스트 방법</h2>
         <div className="space-y-3 text-sm text-gray-700">
           <div className="flex items-start space-x-2">
             <span className="text-blue-500">•</span>
@@ -204,8 +204,8 @@ const MediaGalleryPlayground = (args: Any) => {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-          <h3 className="font-semibold text-blue-900 mb-2">📋 Supported Formats</h3>
+        <div className="mt-6 rounded-lg bg-blue-50 p-4">
+          <h3 className="mb-2 font-semibold text-blue-900">📋 Supported Formats</h3>
           <div className="grid grid-cols-2 gap-4 text-sm text-blue-800">
             <div>
               <strong>Images:</strong> JPEG, PNG, GIF, WebP
