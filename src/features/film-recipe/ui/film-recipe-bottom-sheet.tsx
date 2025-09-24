@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FILM_RECIPES, type FilmRecipe } from '~/entities/film-recipe/model/types';
 import { BottomSheet } from '~/shared/ui/bottom-sheet/bottom-sheet';
 import { Button } from '~/shared/ui/button/button';
+import type { Any } from '~/shared/model/global';
 
 import { FilmRecipeCardHorizontal } from './film-recipe-card-horizontal';
 
@@ -44,7 +45,7 @@ export const FilmRecipeBottomSheet = ({ isOpen, selectedRecipe, onRecipeSelect, 
             ].map((tab) => (
               <button
                 key={tab.key}
-                onClick={() => setActiveTab(tab.key as any)}
+                onClick={() => setActiveTab(tab.key as Any)}
                 className={`py-2 text-sm font-medium border-b-2 transition-colors ${
                   activeTab === tab.key ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
